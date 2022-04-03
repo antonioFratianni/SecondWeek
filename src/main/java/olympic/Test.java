@@ -17,8 +17,8 @@ public class Test {
         DBConnection.connect();
         readProperties.read("sql.properties");
 
-        String sql1 = (readProperties.getProperties().getProperty("create.athlete.table"));
-        athlete.persistence(sql1);
+//        String sql1 = (readProperties.getProperties().getProperty("create.athlete.table"));
+//        athlete.persistence(sql1);
 
 //        String sql2 = (readProperties.getProperties().getProperty("insert.athlete"));
 //        athlete.persistence(sql2);

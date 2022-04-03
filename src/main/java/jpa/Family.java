@@ -1,22 +1,34 @@
 package jpa;
 
-import lombok.Data;
-
 import javax.persistence.*;
 
 @Entity
-@Data
 public class Family {
 
+    private long id;
+    private String name;
+
+    public Family(){}
+
+    public Family(String name){
+        this.name=name;
+    }
+    @Column
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "familyId")
-    private String id;
+    @GeneratedValue(strategy=GenerationType.SEQUENCE)
+    public long getId() {
+        return id;
+    }
+    public void setId(long id) {
+        this.id = id;
+    }
 
-    @Column(length = 100)
-    private String description;
-
-    @ManyToOne
-    @JoinColumn(name = "familyId")
-    private Family family;
+    @Column
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
 }
+

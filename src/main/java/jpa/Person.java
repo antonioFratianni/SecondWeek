@@ -1,31 +1,57 @@
 package jpa;
 
-import lombok.Data;
-
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
-@Data
 @Entity
 public class Person {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "personId")
-    private String id;
-
-    @Column(length = 30)
-    private String lastName;
-
-    @Column(length = 30)
+    private long id;
     private String name;
+    private String surname;
+    private Family family;
 
-    @OneToMany(
-            mappedBy = "family"
-            , cascade = { CascadeType.ALL}
-    )
+    public Person(){}
 
-    private List<Person> persons = new ArrayList<Person>();
+    public Person(String name, String surname, Family city){
+        this.name=name;
+        this.surname=surname;
+        this.family =city;
+    }
 
+    @Column
+    @Id
+    @GeneratedValue(strategy=GenerationType.SEQUENCE)
+    public long getId() {
+        return id;
+    }
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    @Column
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @Column
+    public String getSurname() {
+        return surname;
+    }
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+
+    @ManyToOne(cascade = CascadeType.ALL, targetEntity = Family.class)
+    @JoinColumn(name="family_id")
+    public Family getFamily() {
+        return family;
+    }
+    public void setFamily(Family city) {
+        this.family = city;
+    }
 }
+
