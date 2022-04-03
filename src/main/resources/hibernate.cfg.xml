@@ -11,5 +11,8 @@
 
         <mapping class="hibernate.Product" />
 
+        <mapping class="restaurant.Reservation"/>
+        <mapping class="restaurant.RestaurantTable"/>
+
     </session-factory>
 </hibernate-configuration>

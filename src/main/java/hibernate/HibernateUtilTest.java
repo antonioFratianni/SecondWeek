@@ -10,7 +10,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class HibernateUtilTest {
     private static SessionFactory sessionFactory;
     private Session session;
@@ -31,6 +31,7 @@ public class HibernateUtilTest {
     }
 
     @Test
+    @Order(1)
     public void testCreate() {
         System.out.println("Running testCreate...");
 
@@ -44,7 +45,34 @@ public class HibernateUtilTest {
         Assertions.assertTrue(id > 0);
     }
 
+
+
     @Test
+    @Order(2)
+    public void testGet() {
+        System.out.println("Running testGet...");
+
+        Integer id = 1;
+
+        Product product = session.find(Product.class, id);
+
+        assertEquals("iPhone 10", product.getName());
+    }
+
+
+    @Test
+    @Order(3)
+    public void testList() {
+        System.out.println("Running testList...");
+
+        Query<Product> query = session.createQuery("from Product", Product.class);
+        List<Product> resultList = query.getResultList();
+
+        Assertions.assertFalse(resultList.isEmpty());
+    }
+
+    @Test
+    @Order(4)
     public void testUpdate() {
         System.out.println("Running testUpdate...");
 
@@ -61,28 +89,7 @@ public class HibernateUtilTest {
     }
 
     @Test
-    public void testGet() {
-        System.out.println("Running testGet...");
-
-        Integer id = 1;
-
-        Product product = session.find(Product.class, id);
-
-        assertEquals("iPhone 10", product.getName());
-    }
-
-
-    @Test
-    public void testList() {
-        System.out.println("Running testList...");
-
-        Query<Product> query = session.createQuery("from Product", Product.class);
-        List<Product> resultList = query.getResultList();
-
-        Assertions.assertFalse(resultList.isEmpty());
-    }
-
-    @Test
+    @Order(5)
     public void testDelete() {
         System.out.println("Running testDelete...");
 
