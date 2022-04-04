@@ -45,8 +45,6 @@ public class HibernateUtilTest {
         Assertions.assertTrue(id > 0);
     }
 
-
-
     @Test
     @Order(2)
     public void testGet() {
@@ -58,7 +56,6 @@ public class HibernateUtilTest {
 
         assertEquals("iPhone 10", product.getName());
     }
-
 
     @Test
     @Order(3)
@@ -116,5 +113,4 @@ public class HibernateUtilTest {
         if (session != null) session.close();
         System.out.println("Session closed\n");
     }
-
 }

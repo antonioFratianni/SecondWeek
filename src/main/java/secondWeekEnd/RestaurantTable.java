@@ -1,7 +1,7 @@
-package restaurant;
+package secondWeekEnd;
 
 import javax.persistence.*;
-import java.util.Set;
+import java.util.List;
 
 @Entity
 @Table(name = "restaurantTable")
@@ -14,6 +14,17 @@ public class RestaurantTable {
 
     @Column
     private int capacity;
+
+    @OneToMany(mappedBy = "restaurantTable", cascade = CascadeType.ALL)
+    private List<Reservation> reservations;
+
+    public RestaurantTable(int capacity) {
+        this.capacity = capacity;
+    }
+
+    public RestaurantTable() {
+
+    }
 
     public int getNumber() {
         return number;

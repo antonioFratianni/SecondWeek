@@ -1,18 +1,18 @@
-package restaurant;
+package secondWeekEnd;
 
 import javax.persistence.Embeddable;
-import javax.persistence.Id;
 import java.io.Serializable;
-import java.util.Date;
+import java.util.GregorianCalendar;
+
 
 @Embeddable
 public class ReservationId implements Serializable {
 
     private String surname;
 
-    private Date date;
+    private GregorianCalendar date;
 
-    public ReservationId(String surname, Date date) {
+    public ReservationId(String surname, GregorianCalendar date) {
         this.surname = surname;
         this.date = date;
     }
